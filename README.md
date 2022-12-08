@@ -10,18 +10,7 @@ npm install vue-maptalks-tool
 
 ## docs
 
-```js
-// clone this project
-git clone ...project url
-
-// install packages
-yarn
-
-// generate docs, will create /docs
-yarn doc
-
-// then open /docs/index.html on browser
-```
+[api doc](https://tim760255458.github.io/vue-maptalks-tool/index.html)
 
 ## 使用
 
