@@ -34,5 +34,13 @@
     }
   },
   "author": "tim760255458",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tim760255458/vue-maptalks-tool"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tim760255458/vue-maptalks-tool/issues"
+  },
+  "homepage": "https://github.com/tim760255458/vue-maptalks-tool/blob/master/README.md",
 }
