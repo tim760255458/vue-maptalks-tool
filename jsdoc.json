@@ -1,0 +1,64 @@
+{
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "source": {
+        "include": [
+            "./lib"
+        ],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_",
+        "exclude": [
+            "./src/index.js"
+        ]
+    },
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "opts": {
+        "template": "node_modules/docdash",
+        "encoding": "utf8",
+        "destination": "docs/",
+        "recurse": true
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false
+    },
+    "docdash": {
+        "static": true,
+        "sort": true,
+        "meta": {
+            "title": "vue-maptalks-tool",
+            "description": "vue maptalks tool",
+            "keyword": "vue maptalks"
+        },
+        "search": true,
+        "commonNav": false,
+        "collapse": true,
+        "wrap": true,
+        "typedefs": true,
+        "navLevel": false,
+        "private": true,
+        "removeQuotes": "trim",
+        "scripts": [],
+        "ShortenTypes": false,
+        "menu": { // Adding additional menu items after Home
+            // "Project Website": { // Menu item name
+            //     "href": "https://myproject.com", //the rest of HTML properties to add to manu item
+            //     "target": "_blank",
+            //     "class": "menu-item",
+            //     "id": "website_link"
+            // },
+            // "Forum": {
+            //     "href": "https://myproject.com.forum",
+            //     "target": "_blank",
+            //     "class": "menu-item",
+            //     "id": "forum_link"
+            // }
+        },
+        "scopeInOutputPath": true,
+        "nameInOutputPath": true,
+        "versionInOutputPath": true
+    }
+}
