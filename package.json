@@ -1,7 +1,7 @@
 {
   "name": "vue-maptalks-tool",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -42,5 +42,5 @@
   "bugs": {
     "url": "https://github.com/tim760255458/vue-maptalks-tool/issues"
   },
-  "homepage": "https://github.com/tim760255458/vue-maptalks-tool/blob/master/README.md"
+  "homepage": "https://tim760255458.github.io/vue-maptalks-tool/index.html"
 }
