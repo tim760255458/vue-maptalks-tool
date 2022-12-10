@@ -40,6 +40,7 @@ app.mount("#app");
 <template>
   <div id="app">
     <div style="width: 400px;height: 400px;" ref="map">
+      {/* in vue3 not need v-if="mapUtil", but need template */}
       <template v-if="mapUtil">
         <MarkerInfoWindow ref="infoWindow" />
       </template>
@@ -111,10 +112,13 @@ import { MapUtil } from "vue-maptalks-tool";
 
 const instance = getCurrentInstance();
 const golbalObj = computed(() => instance.appContext.config.globalProperties);
+
 const map = ref(null);
+let mapUtil
+
 const initMap = () => {
   const mp = golbalObj.value.$mp;
-  const mapUtilIns = new MapUtil(mp, map.value, {
+  mapUtil = new MapUtil(mp, map.value, {
     center: [-0.113049, 51.498568],
     zoom: 14,
     baseLayer: new mp.TileLayer("base", {
