@@ -1,0 +1,31 @@
+diff --git a/static/scripts/nav.js b/static/scripts/nav.js
+index 6dd83134296e0c55fa21101fd058b8dea73fcffb..4e142299ac162afca701e7275b7a1e566da40b5d 100644
+--- a/static/scripts/nav.js
++++ b/static/scripts/nav.js
+@@ -1,12 +1,16 @@
+ function scrollToNavItem() {
+-    var path = window.location.href.split('/').pop().replace(/\.html/, '');
+-    document.querySelectorAll('nav a').forEach(function(link) {
+-      var href = link.attributes.href.value.replace(/\.html/, '');
+-      if (path === href) {
+-        link.scrollIntoView({block: 'center'});
+-        return;
+-      }
+-    })
+-  }
++  var path = window.location.href
++    .split("/")
++    .pop()
++    .replace(/\.html/, "");
++  document.querySelectorAll("nav a").forEach(function (link) {
++    var href = link.attributes.href.value.replace(/\.html/, "");
++    link.href = link.attributes.href.value.replace(/\#\..+(?=\#)/, "");
++    if (path === href) {
++      link.scrollIntoView({ block: "center" });
++      return;
++    }
++  });
++}
+ 
+-  scrollToNavItem();
++scrollToNavItem();

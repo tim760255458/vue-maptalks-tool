@@ -1,13 +1,12 @@
 {
   "name": "vue-maptalks-tool",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
-    "doc": "node_modules/.bin/jsdoc -c jsdoc.json",
-    "postinstall": "patch-package"
+    "doc": "jsdoc -c jsdoc.json"
   },
   "dependencies": {
     "maptalks": "^1.0.0-rc.17",
@@ -17,7 +16,6 @@
     "@vitejs/plugin-vue2": "^1.1.2",
     "docdash": "^2.0.0",
     "jsdoc": "^4.0.0",
-    "patch-package": "^6.5.0",
     "vite": "^3.0.2",
     "vite-plugin-libcss": "^1.0.5"
   },
@@ -42,5 +40,10 @@
   "bugs": {
     "url": "https://github.com/tim760255458/vue-maptalks-tool/issues"
   },
-  "homepage": "https://tim760255458.github.io/vue-maptalks-tool/index.html"
+  "homepage": "https://tim760255458.github.io/vue-maptalks-tool/index.html",
+  "pnpm": {
+    "patchedDependencies": {
+      "docdash@2.0.0": "patches/docdash@2.0.0.patch"
+    }
+  }
 }

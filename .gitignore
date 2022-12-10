@@ -13,6 +13,7 @@ dist
 dist-ssr
 *.local
 docs
+.yarn
 
 /cypress/videos/
 /cypress/screenshots/
