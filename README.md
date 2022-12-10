@@ -4,8 +4,15 @@ vue 下的 maptalks 工具函数，支持 vue2/3
 
 ## 安装
 
-```shell
+```js
+// npm
 npm install vue-maptalks-tool
+
+// yarn
+yarn add vue-maptalks-tool
+
+// pnpm
+pnpm install vue-maptalks-tool
 ```
 
 ## docs
@@ -19,15 +26,15 @@ npm install vue-maptalks-tool
 
 // vue2
 import Vue from 'vue'
+import { bindMap } from 'vue-maptalks-tool'
+bindMap(Vue)
 
 // or vue3
-import * as Vue from 'vue'
-
-import { bindMap } from 'vue-maptalks-tool'
-
-// 如果 maptalks 是作为 npm 依赖引入的，使用这个方式将 maptalks 绑定到 vue
-// 如果 maptalks 不是作为依赖引入的，忽略这行，在初始化 MapUtil 时，传入 maptalks 引用即可
-bindMap(Vue)
+import { createApp } from "vue";
+import App from "./App.vue";
+const app = createApp(App);
+bindMap(app);
+app.mount("#app");
 
 // demo.vue
 <template>
@@ -52,12 +59,8 @@ export default {
     isShow: true
   }),
   mounted() {
-    setTimeout(() => {
-      this.initMap()
-      setTimeout(() => {
-        this.load()
-      }, 1000 * 2);
-    }, 300);
+    this.initMap()
+    this.load()
   },
   methods: {
     initMap() {
@@ -67,9 +70,7 @@ export default {
         baseLayer: new this.$mp.TileLayer("base", {
           urlTemplate:
             "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-          subdomains: ["a", "b", "c", "d"],
-          attribution:
-            '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>',
+          subdomains: ["a", "b", "c", "d"]
         }),
       })
     },
@@ -101,6 +102,30 @@ export default {
     }
   },
 };
+</script>
+
+// or use Composition API
+<script setup>
+import { computed, getCurrentInstance, onMounted, ref } from "vue";
+import { MapUtil } from "vue-maptalks-tool";
+
+const instance = getCurrentInstance();
+const golbalObj = computed(() => instance.appContext.config.globalProperties);
+const map = ref(null);
+const initMap = () => {
+  const mp = golbalObj.value.$mp;
+  const mapUtilIns = new MapUtil(mp, map.value, {
+    center: [-0.113049, 51.498568],
+    zoom: 14,
+    baseLayer: new mp.TileLayer("base", {
+      urlTemplate:
+        "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+      subdomains: ["a", "b", "c", "d"],
+    }),
+  });
+};
+
+onMounted(initMap);
 </script>
 
 // MarkerInfoWindow.vue
