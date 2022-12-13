@@ -24,33 +24,30 @@ pnpm install vue-maptalks-tool
 ```js
 // main.js
 
-// vue2
 import Vue from 'vue'
-import { bindMap } from 'vue-maptalks-tool'
-bindMap(Vue)
+import * as maptalks from "maptalks"
+import "maptalks/dist/maptalks.css"
+import { directiveMap } from 'vue-maptalks-tool'
 
-// or vue3
-import { createApp } from "vue";
-import App from "./App.vue";
-const app = createApp(App);
-bindMap(app);
-app.mount("#app");
+const mapOption = {
+  center: [-0.113049, 51.498568],
+  zoom: 14,
+  baseLayer: ...
+}
+Vue.directive("map", directiveMap(Vue, maptalks, mapOption))
+// or in vue3
+// app.directive("map", directiveMap(app, maptalks, mapOption))
+
 
 // demo.vue
 <template>
-  <div id="app">
-    <div style="width: 400px;height: 400px;" ref="map">
-      {/* in vue3 not need v-if="mapUtil", but need template */}
-      <template v-if="mapUtil">
-        <MarkerInfoWindow ref="infoWindow" />
-      </template>
-    </div>
-    <button @click="handleDraw">画图</button>
-    <button @click="handleShow">显隐</button>
+  <div v-map ref="map">
+    <template v-if="mapUtil">
+      <MarkerInfoWindow ref="infoWindow" />
+    </template>
   </div>
 </template>
 <script>
-import { MapUtil } from 'vue-maptalks-tool'
 import MarkerInfoWindow from './MarkerInfoWindow.vue'
 
 export default {
@@ -60,21 +57,10 @@ export default {
     isShow: true
   }),
   mounted() {
-    this.initMap()
-    this.load()
+    this.mapUtil = this.$refs?.map?.mapUtil;
+    this.load();
   },
   methods: {
-    initMap() {
-      this.mapUtil = new MapUtil(this.$mp, this.$refs.map, {
-        center: [-0.113049, 51.498568],
-        zoom: 14,
-        baseLayer: new this.$mp.TileLayer("base", {
-          urlTemplate:
-            "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-          subdomains: ["a", "b", "c", "d"]
-        }),
-      })
-    },
     async load() {
       this.mapUtil.addLayer('VectorLayer', 'layerId1')
       const list = await new Promise((resolve, reject) => setTimeout(() => resolve([
@@ -103,33 +89,6 @@ export default {
     }
   },
 };
-</script>
-
-// or use Composition API
-<script setup>
-import { computed, getCurrentInstance, onMounted, ref } from "vue";
-import { MapUtil } from "vue-maptalks-tool";
-
-const instance = getCurrentInstance();
-const golbalObj = computed(() => instance.appContext.config.globalProperties);
-
-const map = ref(null);
-let mapUtil
-
-const initMap = () => {
-  const mp = golbalObj.value.$mp;
-  mapUtil = new MapUtil(mp, map.value, {
-    center: [-0.113049, 51.498568],
-    zoom: 14,
-    baseLayer: new mp.TileLayer("base", {
-      urlTemplate:
-        "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-      subdomains: ["a", "b", "c", "d"],
-    }),
-  });
-};
-
-onMounted(initMap);
 </script>
 
 // MarkerInfoWindow.vue

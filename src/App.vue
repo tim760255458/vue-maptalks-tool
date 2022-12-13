@@ -1,21 +1,33 @@
 <template>
   <div id="app">
-    <h2>使用 MapUtil</h2>
-    <div style="width: 400px; height: 400px" ref="map">
-      <template v-if="mapUtil">
-        <MarkerInfoWindow ref="infoWindow" />
-      </template>
+    <div class="panel-item">
+      <h2>
+        使用 MapUtil
+        <span>
+          <button @click="handleDraw">画图</button>
+          <button @click="handleShow">显隐</button>
+        </span>
+      </h2>
+      <div ref="map">
+        <template v-if="mapUtil">
+          <MarkerInfoWindow ref="infoWindow" />
+        </template>
+      </div>
     </div>
-    <button @click="handleDraw">画图</button>
-    <button @click="handleShow">显隐</button>
-    <h2>使用 v-map 指令</h2>
-    <div v-map style="width: 400px; height: 400px" ref="map1">
-      <template v-if="mapUtil1">
-        <MarkerInfoWindow ref="infoWindow2" />
-      </template>
+    <div class="panel-item">
+      <h2>
+        使用 v-map 指令
+        <span>
+          <button @click="handleDraw1">画图</button>
+          <button @click="handleShow1">显隐</button>
+        </span>
+      </h2>
+      <div v-map ref="map1">
+        <template v-if="mapUtil1">
+          <MarkerInfoWindow ref="infoWindow2" />
+        </template>
+      </div>
     </div>
-    <button @click="handleDraw1">画图</button>
-    <button @click="handleShow1">显隐</button>
   </div>
 </template>
 <script>
@@ -43,17 +55,22 @@ export default {
   },
   methods: {
     initMap() {
-      this.mapUtil = new MapUtil(this.$mp, this.$refs.map, {
-        center: [-0.113049, 51.498568],
-        zoom: 14,
-        baseLayer: new this.$mp.TileLayer("base", {
-          urlTemplate:
-            "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-          subdomains: ["a", "b", "c", "d"],
-          attribution:
-            '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>',
-        }),
-      });
+      this.mapUtil = new MapUtil(
+        this.$mp,
+        this.$refs.map,
+        {
+          center: [-0.113049, 51.498568],
+          zoom: 14,
+          baseLayer: new this.$mp.TileLayer("base", {
+            urlTemplate:
+              "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+            subdomains: ["a", "b", "c", "d"],
+            attribution:
+              '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>',
+          }),
+        },
+        2
+      );
     },
     async load() {
       this.mapUtil.addLayer("VectorLayer", "layerId1");
@@ -136,3 +153,28 @@ export default {
   },
 };
 </script>
+<style>
+html,
+body,
+#app {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.panel-item h2 {
+  height: 40px;
+  line-height: 40px;
+  margin: 0;
+}
+.panel-item > div {
+  width: 100%;
+  height: calc(100% - 40px);
+}
+</style>
