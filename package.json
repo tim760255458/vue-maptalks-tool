@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
-    "doc": "jsdoc -c jsdoc.json"
+    "doc": "jsdoc --readme README.md -c jsdoc.json"
   },
   "dependencies": {
     "maptalks": "^1.0.0-rc.17",
