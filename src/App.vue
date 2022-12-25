@@ -8,11 +8,7 @@
           <button @click="handleShow">显隐</button>
         </span>
       </h2>
-      <div ref="map">
-        <template v-if="mapUtil">
-          <MarkerInfoWindow ref="infoWindow" />
-        </template>
-      </div>
+      <div ref="map"></div>
     </div>
     <div class="panel-item">
       <h2>
@@ -22,20 +18,17 @@
           <button @click="handleShow1">显隐</button>
         </span>
       </h2>
-      <div v-map ref="map1">
-        <template v-if="mapUtil1">
-          <MarkerInfoWindow ref="infoWindow2" />
-        </template>
-      </div>
+      <div v-map ref="map1"></div>
     </div>
   </div>
 </template>
 <script>
+import * as maptalks from "maptalks";
 import { MapUtil } from "../lib/main";
-import MarkerInfoWindow from "./components/MarkerInfoWindow.vue";
+import MarkerInfoWindow2 from "./components/MarkerInfoWindow2.vue";
 
 export default {
-  components: { MarkerInfoWindow },
+  components: { MarkerInfoWindow2 },
   data: (vm) => ({
     mapUtil: null,
     mapUtil1: null,
@@ -55,22 +48,17 @@ export default {
   },
   methods: {
     initMap() {
-      this.mapUtil = new MapUtil(
-        this.$mp,
-        this.$refs.map,
-        {
-          center: [-0.113049, 51.498568],
-          zoom: 14,
-          baseLayer: new this.$mp.TileLayer("base", {
-            urlTemplate:
-              "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-            subdomains: ["a", "b", "c", "d"],
-            attribution:
-              '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>',
-          }),
-        },
-        2
-      );
+      this.mapUtil = new MapUtil(maptalks, this.$refs.map, {
+        center: [-0.113049, 51.498568],
+        zoom: 14,
+        baseLayer: new maptalks.TileLayer("base", {
+          urlTemplate:
+            "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+          subdomains: ["a", "b", "c", "d"],
+          attribution:
+            '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>',
+        }),
+      });
     },
     async load() {
       this.mapUtil.addLayer("VectorLayer", "layerId1");
@@ -84,12 +72,7 @@ export default {
           300
         )
       );
-      this.mapUtil.addGeometry(
-        list,
-        this.cb,
-        "layerId1",
-        this.$refs.infoWindow
-      );
+      this.mapUtil.addGeometry(list, this.cb, "layerId1", MarkerInfoWindow2);
     },
     cb(option) {
       return [
@@ -132,12 +115,7 @@ export default {
           300
         )
       );
-      this.mapUtil1.addGeometry(
-        list,
-        this.cb,
-        "layerId1",
-        this.$refs.infoWindow2
-      );
+      this.mapUtil1.addGeometry(list, this.cb, "layerId1", MarkerInfoWindow2);
     },
     async handleDraw1() {
       const drawResult = await this.mapUtil1.draw("LineString", {

@@ -1,10 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
-import { bindMap } from "../lib/main";
-import directiveMap from "../lib/mapDirective";
+import { directiveMap } from "../lib/main";
 import * as maptalks from "maptalks";
-
-bindMap(Vue);
+import "maptalks/dist/maptalks.css";
 
 const mapOption = {
   center: [-0.113049, 51.498568],
@@ -16,7 +14,7 @@ const mapOption = {
       '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>',
   }),
 };
-Vue.directive("map", directiveMap(Vue, maptalks, mapOption));
+Vue.directive("map", directiveMap(maptalks, mapOption));
 
 new Vue({
   render: (h) => h(App),
