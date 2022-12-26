@@ -3,6 +3,7 @@ import App from "./App.vue";
 import { directiveMap } from "../lib/main";
 import * as maptalks from "maptalks";
 import "maptalks/dist/maptalks.css";
+// import { directiveMap } from "../dist/vue-maptalks-tool";
 
 const mapOption = {
   center: [-0.113049, 51.498568],

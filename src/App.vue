@@ -88,7 +88,7 @@ export default {
           },
         ],
         {
-          click: () => console.log("click", option.name),
+          click: (event) => console.log("click", option.name),
         },
       ];
     },

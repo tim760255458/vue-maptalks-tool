@@ -2,23 +2,20 @@
 export default {
   props: {
     name: String,
+    closeInfoWindow: Function,
   },
   data: () => ({
     geometoryOption: {
       custom: true,
+      single: false,
     },
   }),
-  methods: {
-    handleClose() {
-      this.closeInfoWindow();
-    },
-  },
 };
 </script>
 <template>
-  <div>
+  <div :data-option="JSON.stringify(geometoryOption)">
     <!-- geometryData 为 geometry property 的值 -->
     {{ name }}
-    <button @click="handleClose">关闭</button>
+    <button @click="closeInfoWindow">关闭</button>
   </div>
 </template>
