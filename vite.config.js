@@ -19,12 +19,9 @@ export default defineConfig({
   build: {
     cssCodeSplit: true,
     copyPublicDir: false,
-    sourcemap: false,
+    sourcemap: true,
     lib: {
-      entry: [
-        resolve(__dirname, "lib/main.js"),
-        resolve(__dirname, "lib/mainV3.js"),
-      ],
+      entry: resolve(__dirname, "lib/main.js"),
       name: "vueMaptalksTool",
       fileName: "vue-maptalks-tool",
     },
