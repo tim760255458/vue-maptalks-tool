@@ -13,7 +13,7 @@ export default {
 };
 </script>
 <template>
-  <div :data-option="JSON.stringify(geometoryOption)">
+  <div>
     <!-- geometryData 为 geometry property 的值 -->
     {{ name }}
     <button @click="closeInfoWindow">关闭</button>
