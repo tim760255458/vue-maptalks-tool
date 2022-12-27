@@ -5,8 +5,6 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:v2": "VITE_VUE_VERSION=2 vite build --mode v2",
-    "build:v3": "VITE_VUE_VERSION=3 vite build --mode v3",
     "preview": "vite preview --port 4173",
     "doc": "jsdoc --readme README.md -c jsdoc.json"
   },
