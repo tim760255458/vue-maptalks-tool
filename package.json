@@ -22,13 +22,13 @@
   "files": [
     "dist"
   ],
-  "description": "vue maptalks tool",
-  "main": "./dist/vue-maptalks-tool.umd.cjs",
-  "module": "./dist/vue-maptalks-tool.js",
+  "description": "vue3 maptalks tool",
+  "main": "./dist/vue3-maptalks-tool.umd.cjs",
+  "module": "./dist/vue3-maptalks-tool.js",
   "exports": {
     ".": {
-      "import": "./dist/vue-maptalks-tool.js",
-      "require": "./dist/vue-maptalks-tool.umd.cjs"
+      "import": "./dist/vue3-maptalks-tool.js",
+      "require": "./dist/vue3-maptalks-tool.umd.cjs"
     }
   },
   "author": "tim760255458",

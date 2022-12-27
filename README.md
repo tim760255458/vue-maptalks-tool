@@ -1,18 +1,18 @@
-# vue-maptalks-tool
+# vue3-maptalks-tool
 
-vue 下的 maptalks 工具函数，支持 vue2/3
+vue3 下的 maptalks 工具函数
 
 ## 安装
 
 ```js
 // npm
-npm install vue-maptalks-tool
+npm install vue3-maptalks-tool
 
 // yarn
-yarn add vue-maptalks-tool
+yarn add vue3-maptalks-tool
 
 // pnpm
-pnpm install vue-maptalks-tool
+pnpm install vue3-maptalks-tool
 ```
 
 ## docs

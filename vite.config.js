@@ -22,8 +22,8 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: resolve(__dirname, "lib/mainV3.js"),
-      name: "vueMaptalksTool",
-      fileName: "vue-maptalks-tool",
+      name: "vue3MaptalksTool",
+      fileName: "vue3-maptalks-tool",
     },
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
