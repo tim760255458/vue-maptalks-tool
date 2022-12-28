@@ -48,7 +48,7 @@ app.mount("#app");
 </details>
 
 <details>
-<summary>vue2 demo</summary>
+<summary>vue3 demo</summary>
 
 ```js
 <script setup>
