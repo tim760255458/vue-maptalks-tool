@@ -1,7 +1,7 @@
 {
   "name": "vue-maptalks-tool",
   "type": "module",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
