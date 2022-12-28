@@ -5,7 +5,7 @@ export default {
     closeInfoWindow: Function,
   },
   data: () => ({
-    geometoryOption: {
+    infowindowOption: {
       custom: true,
       single: false,
     },

@@ -121,11 +121,11 @@ const props = defineProps({
   name: String,
   closeInfoWindow: Function,
 });
-const geometoryOption = {
+const infowindowOption = {
   custom: true,
   single: false,
 };
-defineExpose({ geometoryOption });
+defineExpose({ infowindowOption });
 </script>
 <template>
   <div>
